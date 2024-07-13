@@ -43,13 +43,16 @@ const QuestionCard = React.memo<QuestionCardProps>(
     currentQuestionIndex,
   }) => (
     <Card
-      direction={{ base: "column", sm: "row" }}
+      direction={{ base: "column", md: "row" }}
       overflow="hidden"
       variant="outline"
-      w="90%"
     >
-      <Image objectFit="cover" w="50%" src="lamp_majin.png" />
-      <Stack direction="column" w="50%">
+      <Image
+        objectFit="cover"
+        w={{ sm: "100%", md: "50%" }}
+        src="lamp_majin.png"
+      />
+      <Stack direction="column" w={{ sm: "100%", md: "50%" }}>
         <CardBody>
           <Heading>{question.title}</Heading>
           <Text py="2">{question.detail}</Text>
