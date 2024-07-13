@@ -121,24 +121,22 @@ const App: React.FC = () => {
               <Thead>
                 <Tr>
                   <Th>ID</Th>
-                  <Th>Name</Th>
-                  <Th>Role</Th>
-                  <Th>Email</Th>
+                  <Th>問</Th>
+                  <Th>概要</Th>
+                  <Th>答え</Th>
                 </Tr>
               </Thead>
               <Tbody>
-                <Tr>
-                  <Td>1</Td>
-                  <Td>John Doe</Td>
-                  <Td>Developer</Td>
-                  <Td>john.doe@example.com</Td>
-                </Tr>
-                <Tr>
-                  <Td>2</Td>
-                  <Td>Jane Smith</Td>
-                  <Td>Designer</Td>
-                  <Td>jane.smith@example.com</Td>
-                </Tr>
+                {questions.map((question, index) => {
+                  return (
+                    <Tr key={index}>
+                      <Td>{question.id}</Td>
+                      <Td>{question.title}</Td>
+                      <Td>{question.detail}</Td>
+                      <Td>{answers[index]}</Td>
+                    </Tr>
+                  );
+                })}
               </Tbody>
             </Table>
             <Button
