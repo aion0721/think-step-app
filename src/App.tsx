@@ -11,8 +11,14 @@ import {
   Heading,
   Image,
   Stack,
+  Table,
+  Tbody,
+  Td,
   Text,
   Textarea,
+  Th,
+  Thead,
+  Tr,
   VStack,
 } from "@chakra-ui/react";
 import Header from "./components/Header";
@@ -100,14 +106,50 @@ const App: React.FC = () => {
     <Flex flexDirection="column" minHeight="100vh">
       <Header />
       <VStack flex={1} p={6} spacing={4}>
-        <QuestionCard
-          question={currentQuestion}
-          onNext={handleNextQuestion}
-          onBefore={handleBeforeQuestion}
-          onAnswerChange={handleAnswerChange}
-          answerValue={answers[currentQuestionIndex] || ""}
-          currentQuestionIndex={currentQuestionIndex}
-        />
+        {currentQuestionIndex < questions.length ? (
+          <QuestionCard
+            question={currentQuestion}
+            onNext={handleNextQuestion}
+            onBefore={handleBeforeQuestion}
+            onAnswerChange={handleAnswerChange}
+            answerValue={answers[currentQuestionIndex] || ""}
+            currentQuestionIndex={currentQuestionIndex}
+          />
+        ) : (
+          <Stack>
+            <Table variant="simple">
+              <Thead>
+                <Tr>
+                  <Th>ID</Th>
+                  <Th>Name</Th>
+                  <Th>Role</Th>
+                  <Th>Email</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                <Tr>
+                  <Td>1</Td>
+                  <Td>John Doe</Td>
+                  <Td>Developer</Td>
+                  <Td>john.doe@example.com</Td>
+                </Tr>
+                <Tr>
+                  <Td>2</Td>
+                  <Td>Jane Smith</Td>
+                  <Td>Designer</Td>
+                  <Td>jane.smith@example.com</Td>
+                </Tr>
+              </Tbody>
+            </Table>
+            <Button
+              onClick={() => {
+                setCurrentQuestionIndex(currentQuestionIndex - 1);
+              }}
+            >
+              Go back
+            </Button>
+          </Stack>
+        )}
       </VStack>
       <Footer />
     </Flex>
