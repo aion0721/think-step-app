@@ -1,10 +1,13 @@
 import React, { useState, useCallback } from "react";
 import {
+  Box,
   Button,
   Card,
   CardBody,
   CardFooter,
+  Center,
   Flex,
+  HStack,
   Heading,
   Image,
   Stack,
@@ -22,20 +25,25 @@ interface QuestionCardProps {
   onBefore: () => void;
   onAnswerChange: (value: string) => void;
   answerValue: string;
+  currentQuestionIndex: number;
 }
 const QuestionCard = React.memo<QuestionCardProps>(
-  ({ question, onNext, onBefore, onAnswerChange, answerValue }) => (
+  ({
+    question,
+    onNext,
+    onBefore,
+    onAnswerChange,
+    answerValue,
+    currentQuestionIndex,
+  }) => (
     <Card
       direction={{ base: "column", sm: "row" }}
       overflow="hidden"
       variant="outline"
+      w="90%"
     >
-      <Image
-        objectFit="cover"
-        maxW={{ base: "100%", sm: "400px" }}
-        src="lamp_majin.png"
-      />
-      <Stack>
+      <Image objectFit="cover" w="50%" src="lamp_majin.png" />
+      <Stack direction="column" w="50%">
         <CardBody>
           <Heading>{question.title}</Heading>
           <Text py="2">{question.detail}</Text>
@@ -45,12 +53,19 @@ const QuestionCard = React.memo<QuestionCardProps>(
           />
         </CardBody>
         <CardFooter>
-          <Button variant="solid" colorScheme="blue" onClick={onBefore}>
-            Before Step
-          </Button>
-          <Button variant="solid" colorScheme="blue" onClick={onNext}>
-            Next Step
-          </Button>
+          <Stack direction="row" spacing={4} justify="center" width="full">
+            <Button
+              variant="solid"
+              colorScheme="blue"
+              onClick={onBefore}
+              isDisabled={currentQuestionIndex === 0}
+            >
+              Before Step
+            </Button>
+            <Button variant="solid" colorScheme="blue" onClick={onNext}>
+              Next Step
+            </Button>
+          </Stack>
         </CardFooter>
       </Stack>
     </Card>
@@ -80,9 +95,6 @@ const App: React.FC = () => {
     },
     [currentQuestionIndex]
   );
-  const showAnswer = () => {
-    console.log(answers);
-  };
 
   return (
     <Flex flexDirection="column" minHeight="100vh">
@@ -94,10 +106,8 @@ const App: React.FC = () => {
           onBefore={handleBeforeQuestion}
           onAnswerChange={handleAnswerChange}
           answerValue={answers[currentQuestionIndex] || ""}
+          currentQuestionIndex={currentQuestionIndex}
         />
-        <Button variant="solid" colorScheme="blue" onClick={showAnswer}>
-          Show Answer
-        </Button>
       </VStack>
       <Footer />
     </Flex>
