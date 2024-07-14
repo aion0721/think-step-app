@@ -9,7 +9,6 @@ import {
   Image,
   ListItem,
   Stack,
-  Text,
   Textarea,
   UnorderedList,
 } from "@chakra-ui/react";
