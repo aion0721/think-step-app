@@ -39,6 +39,7 @@ const QuestionCard = React.memo<QuestionCardProps>(
         <Image
           objectFit="cover"
           w={{ sm: "100%", md: "50%" }}
+          alt="majin"
           src="lamp_majin.png"
         />
         <Stack direction="column" w={{ sm: "100%", md: "50%" }}>
@@ -47,6 +48,8 @@ const QuestionCard = React.memo<QuestionCardProps>(
             <Text py="2">{question.detail}</Text>
             <Textarea
               value={answerValue}
+              aria-label="AnswerArea"
+              placeholder="回答を記載"
               onChange={(e) => onAnswerChange(e.target.value)}
             />
           </CardBody>
