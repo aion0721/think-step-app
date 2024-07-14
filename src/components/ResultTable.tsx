@@ -1,5 +1,12 @@
 import {
   Button,
+  ListItem,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverTrigger,
   Stack,
   Table,
   Tbody,
@@ -7,6 +14,7 @@ import {
   Th,
   Thead,
   Tr,
+  UnorderedList,
 } from "@chakra-ui/react";
 import { questions } from "../questions";
 import React from "react";
@@ -24,6 +32,7 @@ const ResultTable = React.memo<ResultTableProps>(({ answers, onBefore }) => {
           <Tr>
             <Th>ID</Th>
             <Th>問</Th>
+            <Th>概要</Th>
             <Th>答え</Th>
           </Tr>
         </Thead>
@@ -33,6 +42,24 @@ const ResultTable = React.memo<ResultTableProps>(({ answers, onBefore }) => {
               <Tr key={index}>
                 <Td>{question.id}</Td>
                 <Td>{question.title}</Td>
+                <Td>
+                  <Popover>
+                    <PopoverTrigger>
+                      <Button>概要を開く</Button>
+                    </PopoverTrigger>
+                    <PopoverContent>
+                      <PopoverArrow />
+                      <PopoverCloseButton />
+                      <PopoverBody>
+                        <UnorderedList>
+                          {question.details.map((detail, index) => (
+                            <ListItem key={index}>{detail}</ListItem>
+                          ))}
+                        </UnorderedList>
+                      </PopoverBody>
+                    </PopoverContent>
+                  </Popover>
+                </Td>
                 <Td>{answers[index]}</Td>
               </Tr>
             );
