@@ -7,9 +7,11 @@ import {
   CardFooter,
   Heading,
   Image,
+  ListItem,
   Stack,
   Text,
   Textarea,
+  UnorderedList,
 } from "@chakra-ui/react";
 
 interface QuestionCardProps {
@@ -45,7 +47,11 @@ const QuestionCard = React.memo<QuestionCardProps>(
         <Stack direction="column" w={{ sm: "100%", md: "50%" }}>
           <CardBody>
             <Heading>{question.title}</Heading>
-            <Text py="2">{question.detail}</Text>
+            <UnorderedList p={4}>
+              {question.details.map((detail, index) => (
+                <ListItem key={index}>{detail}</ListItem>
+              ))}
+            </UnorderedList>
             <Textarea
               value={answerValue}
               aria-label="AnswerArea"

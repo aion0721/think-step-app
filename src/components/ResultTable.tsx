@@ -24,7 +24,6 @@ const ResultTable = React.memo<ResultTableProps>(({ answers, onBefore }) => {
           <Tr>
             <Th>ID</Th>
             <Th>問</Th>
-            <Th>概要</Th>
             <Th>答え</Th>
           </Tr>
         </Thead>
@@ -34,7 +33,6 @@ const ResultTable = React.memo<ResultTableProps>(({ answers, onBefore }) => {
               <Tr key={index}>
                 <Td>{question.id}</Td>
                 <Td>{question.title}</Td>
-                <Td>{question.detail}</Td>
                 <Td>{answers[index]}</Td>
               </Tr>
             );
