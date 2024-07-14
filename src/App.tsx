@@ -1,13 +1,10 @@
 import React, { useState, useCallback } from "react";
 import {
-  Box,
   Button,
   Card,
   CardBody,
   CardFooter,
-  Center,
   Flex,
-  HStack,
   Heading,
   Image,
   Stack,
