@@ -43,6 +43,7 @@ const QuestionCard = React.memo<QuestionCardProps>(
       direction={{ base: "column", md: "row" }}
       overflow="hidden"
       variant="outline"
+      w="80%"
     >
       <Image
         objectFit="cover"
